@@ -7,15 +7,16 @@ export default function Home({ results }) {
   const router = useRouter();
   const onClick = (id, title) => {
     // router.push(`/movies/${id}`);
-    router.push(
-      {
-        pathname: `/movies/${id}`,
-        query: {
-          title,
-        },
-      },
-      `/movies/${id}` // url 이름 변경 as 옵션
-    );
+    // router.push(
+    //   {
+    //     pathname: `/movies/${id}`,
+    //     query: {
+    //       title,
+    //     },
+    //   },
+    //   `/movies/${id}` // url 이름 변경 as 옵션
+    // );
+    router.push(`/movies/${title}/${id}`);
   };
   return (
     <div className="container">
@@ -28,13 +29,16 @@ export default function Home({ results }) {
         >
           <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
           <Link
-            href={{
-              pathname: `/movies/${movie.id}`,
-              query: {
-                title: movie.original_title,
-              },
-            }}
-            as={`/movies/${movie.id}`}
+            href={
+              // {
+              //   pathname: `/movies/${movie.id}`,
+              //   query: {
+              //     title: movie.original_title,
+              //   },
+              // }
+              `/movies/${movie.original_title}/${movie.id}`
+            }
+            // as={`/movies/${movie.id}`}
           >
             <h4>{movie.original_title}</h4>
           </Link>
